@@ -6,6 +6,21 @@ const app = new Hono()
 
 app.get('/' , (c) => c.text('hello'))
 
+app.notFound((c) => {
+    return c.text('404' , 404)
+})
+
+// 存在しないルート
+app.get('/trigger-error', (c) => {
+    throw new Error('Intentional Error')
+})
+
+app.onError((err, c) => {
+    console.log(`${err}`)
+    return c.text('あたし馬鹿じゃないもん！' , 500)
+})
+
+app.fire()
 // const View = () => {
 //         return (
 //         <html>
