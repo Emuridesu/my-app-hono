@@ -1,10 +1,19 @@
 import { Hono } from 'hono'
-import { basicAuth } from 'hono/basic-auth'
-import { serve } from '@hono/node-server'
+
 
 const app = new Hono()
 
-app.get('/' , (c) => c.text('hello'))
+app.get('/hello', (c) => {
+    return c.text('Hello, World!')
+})
+app.post('/message', async (c) => {
+    const body = await c.req.text()
+    if (body === 'Hello!') {
+    return c.text('Message received', 201)
+    }
+    return c.text('Bad Request', 400)
+})
+
 
 app.notFound((c) => {
     return c.text('404' , 404)
@@ -19,8 +28,6 @@ app.onError((err, c) => {
     console.log(`${err}`)
     return c.text('あたし馬鹿じゃないもん！' , 500)
 })
-
-app.fire()
 // const View = () => {
 //         return (
 //         <html>
