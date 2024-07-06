@@ -1,10 +1,13 @@
 import { Hono } from 'hono'
-
+import userRouter from '../routes/user'
 
 const app = new Hono()
 
-app.get('/hello', (c) => {
-    return c.text('Hello, World!')
+app.route('/user', userRouter)
+
+
+app.get('/', (c) => {
+    return c.text('Hello, Hono!')
 })
 app.post('/message', async (c) => {
     const body = await c.req.text()
