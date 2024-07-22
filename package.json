@@ -1,8 +1,8 @@
 {
   "name": "my-app",
   "scripts": {
-    "dev": "wrangler dev src/index.tsx",
-    "deploy": "wrangler deploy --minify src/index.tsx",
+    "dev": "wrangler dev src/setget.ts",
+    "deploy": "wrangler deploy --minify src/setget.ts",
     "test": "jest"
   },
   "dependencies": {

@@ -10,13 +10,17 @@ const api = new Hono().basePath('/api');
 
 api.get('/book', (c) => c.text('list book'))
 
+
+//req.headers.get('host')でリクエストホストヘッダーの値を取得
 const app = new Hono({
-    getPath: (req) => {
-        return req.url.replace(/^https?:\/\/(.+?)$/, '$1');
-    },
+    getPath: (req) =>
+        '/' + req.headers.get('post') + req.url.replace(/^https?:\/\/[^/]+(\/[^?]*)/, '$1')
 })
+
+app.get('www1.example.com/hello', (c) => c.text('hello www1'))
 //httpまたはhttpsが一致すれば
 
 // 各ホスト名に対応するルートを定義
 app.get('/www1.example.com/hello', (c) => c.text('hello www1'));
 app.get('/www2.example.com/hello', (c) => c.text('hello www2'));
+
