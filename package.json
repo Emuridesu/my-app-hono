@@ -1,18 +1,27 @@
 {
   "name": "my-app",
   "scripts": {
-    "dev": "wrangler dev src/setget.ts",
-    "deploy": "wrangler deploy --minify src/setget.ts",
-    "test": "jest"
+    "dev": "wrangler dev src/rendar.tsx",
+    "deploy": "wrangler deploy --minify src/rendar.tsx",
+    "test": "jest",
+    "drizzle:generate": "npx drizzle-kit generate",
+    "drizzle:migrate": "npx drizzle-kit migrate",
+    "drizzle:push": "npx drizzle-kit push",
+    "drizzle:drop": "npx drizzle-kit drop"
   },
   "dependencies": {
     "@hono/node-server": "^1.11.4",
-    "hono": "^4.4.7"
+    "dotenv": "^16.4.5",
+    "drizzle-orm": "^0.32.1",
+    "hono": "^4.5.3",
+    "mysql2": "^3.11.0",
+    "schema": "^0.2.1"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20240529.0",
     "@types/jest": "^29.5.12",
     "@types/node": "^20.14.9",
+    "drizzle-kit": "^0.23.0",
     "jest": "^29.7.0",
     "ts-jest": "^29.1.5",
     "wrangler": "^3.57.2"
